@@ -2,7 +2,7 @@ development:
   type: deploy
   script:
   - gem install dpl
-  - dpl --provider=heroku --app=health-app-backend --api-key=94c8e59d-108a-4e8c-9834-929ff1a086d3
+  - dpl --provider=heroku --app=health-app-backend --api-key=$HEROKU_KEY
   only:
   - master
 
