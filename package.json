@@ -20,7 +20,10 @@
     "underscore": "^1.8.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "postinstall": "cd cloud && apidoc -o api-doc/",
+    "start": "node index.js",
+    "startDev": "./node_modules/nodemon/bin/nodemon.js index.js",
+    "build-apidoc-local": "cd cloud && ../node_modules/.bin/apidoc -o api-doc/"
   },
   "engines": {
     "node": ">=4.3"
