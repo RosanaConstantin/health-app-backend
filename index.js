@@ -1,6 +1,6 @@
 // content of index.js
 const http = require('http')
-const port = $PORT
+var port = process.env.PORT;
 
 const requestHandler = (request, response) => {
   console.log(request.url)
