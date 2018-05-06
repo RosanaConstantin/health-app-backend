@@ -5,4 +5,3 @@ development:
   - dpl --provider=heroku --app=health-app-backend --api-key=$HEROKU_KEY
   only:
   - master
-
