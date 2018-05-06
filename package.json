@@ -19,14 +19,18 @@
     "parse-server": "*",
     "underscore": "^1.8.3"
   },
-  "scripts": {
+  "scripts": [{
     "start": "node index.js"
-  },
+  },{
+    "postinstall": "npm run build-config",
+    "build-config": "echo '{\"apps\": [{\"serverURL\": \"'$SERVER_URL'\",\"appId\": \"'$APP_ID'\",\"masterKey\": \"'$MASTER_KEY'\",\"appName\": \"my-app-name\"}]}'>parse-dashboard-config.json && cat parse-dashboard-config.json"
+  }],
 
   "engines": {
     "node": ">=4.3"
   },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "parse-dashboard": "^1.0.19"
   }
 }
