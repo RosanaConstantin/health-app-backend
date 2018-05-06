@@ -1,18 +1,36 @@
-// content of index.js
-const http = require('http')
-const port = process.env.PORT;
+var express = require('express');
+var ParseServer = require('parse-server').ParseServer;
 
-const requestHandler = (request, response) => {
-  console.log(request.url)
-  response.end('Hello Node.js Server!')
+var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
+
+if (!databaseUri) {
+    console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
-const server = http.createServer(requestHandler)
+var api = new ParseServer({
+    databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
+    appId: process.env.APP_ID || 'myAppId',
+    masterKey: process.env.MASTER_KEY || '',
+    serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',
+    liveQuery: {
+        classNames: []
+    },
+    verbose: !process.env.PRODUCTION
+});
 
-server.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
+var app = express();
 
-  console.log(`server is listening on ${port}`)
-})
+var mountPath = process.env.PARSE_MOUNT || '/parse';
+app.use(mountPath, api);
+
+app.get('/', function (req, res) {
+    res.status(200).send('');
+});
+
+var port = process.env.PORT || 1337;
+var httpServer = require('http').createServer(app);
+httpServer.listen(port, '0.0.0.0', function () {
+    console.log('parse-server running on port ' + port + '.');
+});
+
+ParseServer.createLiveQueryServer(httpServer);
