@@ -1,23 +1,32 @@
 {
   "name": "health-app-backend",
-  "version": "1.0.0",
-  "description": "Health App Backend",
+  "version": "0.0.1",
+  "author": "Rosana Constantin",
   "main": "index.js",
-  "dependencies": {
-    "mongodb": "^3.0.7"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "npm test"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RosanaConstantin/health-app-backend.git"
+    "url": "https://github.com/RosanaConstantin/health-app-backend.git"
   },
-  "author": "Rosana",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RosanaConstantin/health-app-backend/issues"
+  "license": "MIT",
+  "dependencies": {
+    "apidoc": "^0.17.6",
+    "basic-auth": "^2.0.0",
+    "express": "~4.11.x",
+    "fbgraph": "^1.4.4",
+    "kerberos": "~0.0.x",
+    "moment": "^2.22.0",
+    "parse": "~1.8.0",
+    "parse-server": "*",
+    "underscore": "^1.8.3"
   },
-  "homepage": "https://github.com/RosanaConstantin/health-app-backend#readme"
+  "scripts": {
+    "start": "node index.js"
+  },
+
+  "engines": {
+    "node": ">=4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
 }
