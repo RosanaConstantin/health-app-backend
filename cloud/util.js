@@ -16,7 +16,8 @@
         },
         entity: {
             Role: Parse.Object.extend('Role'),
-            User: Parse.User
+            User: Parse.User,
+            UserProfile: Parse.Object.extend('UserProfile')
         },
         ResponseWrapper: {
             override: function (response) {
