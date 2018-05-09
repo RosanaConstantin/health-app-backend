@@ -19,6 +19,7 @@
 
             Parse.Cloud.define(prefix + 'create', userManagement.create);
             Parse.Cloud.define(prefix + 'update-profile', userProfile.update);
+            Parse.Cloud.define(prefix + 'login', userManagement.loginUser);
 
             return this;
         }

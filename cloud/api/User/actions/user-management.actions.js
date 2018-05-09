@@ -12,7 +12,8 @@
 
     module.exports = {
         version: '1.0.0',
-        create: _createUser
+        create: _createUser,
+        loginUser: _loginUser
     };
 
     function _createUser(request, response) {
@@ -65,46 +66,24 @@
                         .then( function(user){
                             response.success(user);
                         }, function (error){
-                            response.error(500, error.message);1
+                            response.error(500, error.message);
                         }
                 );
             });
     }
 
     function _loginUser(request, response) {
-        if (!util.validateRequestParams(request, response, ['email', 'password'])) {
+        if (!util.validateRequestParams(request, response, ['username', 'password'])) {
             return;
         }
 
         var params = request.params;
 
-        return Parse.User.logIn(params['email'], params['password'])
+        return Parse.User.logIn(params['username'], params['password'])
             .then(function (user) {
                 response.success(user);
-            })
-            .catch(_handleInvalidLogin.bind(null, params, response));
-
+            }, function(reason){
+                response.success(500, reason.message);
+            });
     }
-
-    function _handleInvalidLogin(requestParams, response, error) {
-        if (error.code && error.code === 101) {
-            userUtil.loginWebsite(requestParams)
-            // .then(function (websiteUser) {
-            //     return userUtil.accountInformationWebsite(websiteUser['token']);
-            // })
-                .then(function (accountInformation) {
-                    return _createNutrientUserAndProfile(requestParams, accountInformation);
-                })
-                .then(function (user, profile) {
-                    response.success(user);
-                })
-                .catch(function (error) {
-                    response.error(500, 'User login: ' + JSON.stringify(error));
-                });
-        } else {
-            response.error(500, error);
-        }
-    }
-
-
 }());
