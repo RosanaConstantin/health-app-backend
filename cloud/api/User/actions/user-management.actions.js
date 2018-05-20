@@ -13,7 +13,8 @@
     module.exports = {
         version: '1.0.0',
         create: _createUser,
-        loginUser: _loginUser
+        loginUser: _loginUser,
+        getUserDetails: _getUserDetails
     };
 
     function _createUser(request, response) {
@@ -85,5 +86,20 @@
             }, function(reason){
                 response.success(500, reason.message);
             });
+    }
+
+    function _getUserDetails(request, response){
+        var user = request.user;
+        var profileId = user.get('profile').id;
+        var sessionToken = user.getSessionToken();
+
+        var query = new Parse.Query(entity.UserProfile);
+
+        query.get(profileId, {sessionToken: sessionToken})
+            .then(function(result){
+                response.success(result);
+            }, function(error){
+                response.error(500, error.message);
+            })
     }
 }());

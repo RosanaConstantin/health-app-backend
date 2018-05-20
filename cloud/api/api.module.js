@@ -7,7 +7,7 @@
  */
 (function () {
     var user = require("./User/user.module");
-   // var userHooks = require('./User/hooks/user');
+    var userHooks = require('./User/hooks/user');
 
     const MODULE_PREFIX = 'api-';
 
@@ -19,7 +19,7 @@
             user.initialize(MODULE_PREFIX);
 
             // Hooks initialize
-       //     userHooks.initialize();
+            userHooks.initialize();
             return this;
         }
     };
