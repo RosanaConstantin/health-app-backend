@@ -90,16 +90,19 @@
 
     function _getUserDetails(request, response){
         var user = request.user;
-        var profileId = user.get('profile').id;
+        var userId = user.id;
         var sessionToken = user.getSessionToken();
 
-        var query = new Parse.Query(entity.UserProfile);
+        var query = new Parse.Query(entity.User);
 
-        query.get(profileId, {sessionToken: sessionToken})
+        query
+            .include('profile')
+            .get(userId, {sessionToken: sessionToken})
             .then(function(result){
                 response.success(result);
             }, function(error){
                 response.error(500, error.message);
             })
     }
+
 }());
