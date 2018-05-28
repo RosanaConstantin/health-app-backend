@@ -19,6 +19,9 @@
             User: Parse.User,
             UserProfile: Parse.Object.extend('UserProfile')
         },
+        entityKeys: {
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications']
+        },
         ResponseWrapper: {
             override: function (response) {
                 response.errorTriggered = false;

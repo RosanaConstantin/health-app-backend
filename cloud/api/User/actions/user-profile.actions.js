@@ -9,6 +9,7 @@
 (function () {
     var util = require('../../../util'),
         userUtil = require("../user.util"),
+        entityKeys = util.entityKeys,
         entity = util.entity;
 
     module.exports = {
