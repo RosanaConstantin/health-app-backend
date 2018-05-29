@@ -14,7 +14,8 @@
 
     module.exports = {
         version: '1.0.0',
-        update: _updateProfile
+        update: _updateProfile,
+        updateNotifications: _updateNotifications
     };
 
     /**
@@ -70,4 +71,38 @@
             });
     }
 
+
+    function _updateNotifications(request, response) {
+        if (!userUtil.validateUserRequest(request, response)) {
+            return;
+        }
+
+        if (request.params && (request.params['notifications'] === undefined || request.params['notifications'] === null)) {
+            return;
+        }
+
+        var user = request.user;
+        var sessionToken = user.getSessionToken();
+
+        var userProfile = user.get('profile');
+        var profileChanges = request.params['notifications'];
+
+        var query = new Parse.Query(entity.UserProfile);
+
+        query.get(userProfile.id, {sessionToken: sessionToken})
+            .then(function (profile) {
+                if (!profile) {
+                    console.error('User profile is null or undefined');
+                }
+
+                return util.updateNotifications(profile, entityKeys.UserProfile, profileChanges)
+                    .save(null, {sessionToken: sessionToken});
+            })
+            .then(function (result) {
+                response.success('Profile updated.');
+            })
+            .catch(function (reason) {
+                response.error(500, 'Couldn\'t update profile' + JSON.stringify(reason));
+            });
+    }
 }());

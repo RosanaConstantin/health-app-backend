@@ -53,7 +53,11 @@
             });
 
             return object;
+        },
+        updateNotifications: function (object, objectKeys, changes) {
+            if(changes !== undefined && changes!== null)
+                object.set('notifications', changes);
+            return object;
         }
-
     };
 }());
