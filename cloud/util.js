@@ -20,7 +20,8 @@
             UserProfile: Parse.Object.extend('UserProfile')
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications']
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications'],
+            User: ['email', 'password', 'username']
         },
         ResponseWrapper: {
             override: function (response) {

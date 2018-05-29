@@ -8,13 +8,15 @@
 
 (function () {
     var util = require('../../../util'),
+        entityKeys = util.entityKeys,
         entity = util.entity;
 
     module.exports = {
         version: '1.0.0',
         create: _createUser,
         loginUser: _loginUser,
-        getUserDetails: _getUserDetails
+        getUserDetails: _getUserDetails,
+        updateCredentials: _updateCredentials
     };
 
     function _createUser(request, response) {
@@ -105,4 +107,33 @@
             })
     }
 
+    function _updateCredentials(request, response){
+
+        if (!util.validateRequestParams(request, response, ['credentials'])) {
+            return;
+        }
+
+        var user = request.user;
+        var sessionToken = user.getSessionToken();
+
+        var credentialsChanges = request.params['credentials'];
+
+        var query = new Parse.Query(entity.User);
+
+        query.get(user.id, {sessionToken: sessionToken})
+            .then(function (user) {
+                if (!user) {
+                    console.error('User is null or undefined');
+                }
+
+                return util.updateObject(user, entityKeys.User, credentialsChanges)
+                    .save(null, {sessionToken: sessionToken});
+            })
+            .then(function (result) {
+                response.success('User updated.');
+            })
+            .catch(function (reason) {
+                response.error(500, 'Couldn\'t update user' + JSON.stringify(reason));
+            });
+    }
 }());
