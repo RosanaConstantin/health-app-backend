@@ -14,6 +14,7 @@
     module.exports = {
         version: '1.0.0',
         create: _createUser,
+        deleteUser: _deleteUser,
         loginUser: _loginUser,
         getUserDetails: _getUserDetails,
         updateCredentials: _updateCredentials
@@ -134,6 +135,24 @@
             })
             .catch(function (reason) {
                 response.error(500, 'Couldn\'t update user' + JSON.stringify(reason));
+            });
+    }
+
+    function _deleteUser(request, response){
+        var user = request.user;
+        var sessionToken = user.getSessionToken();
+
+        var query = new Parse.Query(entity.User);
+
+        query.get(user.id, {sessionToken: sessionToken})
+            .then(function (user) {
+                return user.destroy({useMasterKey: true});
+            })
+            .then(function (result) {
+                response.success('User deleted.');
+            })
+            .catch(function (reason) {
+                response.error(500, 'Couldn\'t delete user' + JSON.stringify(reason));
             });
     }
 }());
