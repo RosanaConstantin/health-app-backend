@@ -20,7 +20,7 @@
             UserProfile: Parse.Object.extend('UserProfile')
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications'],
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight'],
             User: ['email', 'password', 'username']
         },
         ResponseWrapper: {
