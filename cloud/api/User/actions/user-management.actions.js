@@ -46,6 +46,7 @@
 
         userProfile.set('firstName', info['firstName']);
         userProfile.set('lastName', info['lastName']);
+        userProfile.set('notifications', true);
 
         return userProfile.save(null, {useMasterKey: true})
             .then(function (userProfile) {
