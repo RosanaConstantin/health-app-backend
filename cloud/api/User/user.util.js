@@ -15,6 +15,7 @@
         initialize: function () {
             return this;
         },
+
         validateUserRequest: function (request, response) {
             var user = request.user;
 

@@ -17,7 +17,8 @@
         entity: {
             Role: Parse.Object.extend('Role'),
             User: Parse.User,
-            UserProfile: Parse.Object.extend('UserProfile')
+            UserProfile: Parse.Object.extend('UserProfile'),
+            Notification: Parse.Object.extend('Notification')
         },
         entityKeys: {
             UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight'],
