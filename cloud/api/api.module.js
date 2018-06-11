@@ -8,6 +8,7 @@
 (function () {
     var user = require("./User/user.module");
     var notification = require("./Notification/notification.module");
+    var rating = require("./Rating/rating.module");
     var userHooks = require('./User/hooks/user');
 
     const MODULE_PREFIX = 'api-';
@@ -19,6 +20,7 @@
             // Actions initialize
             user.initialize(MODULE_PREFIX);
             notification.initialize(MODULE_PREFIX);
+            rating.initialize(MODULE_PREFIX);
 
             // Hooks initialize
             userHooks.initialize();
