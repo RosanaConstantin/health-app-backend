@@ -20,6 +20,7 @@
             Parse.Cloud.define(prefix + 'save', notificationActions.saveNotification);
             Parse.Cloud.define(prefix + 'delete', notificationActions.deleteNotification);
             Parse.Cloud.define(prefix + 'get', notificationActions.getNotification);
+            Parse.Cloud.define(prefix + 'mark-read', notificationActions.markStatusReadNotif;
 
             return this;
         }
