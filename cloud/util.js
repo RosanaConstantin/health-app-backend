@@ -20,6 +20,7 @@
             UserProfile: Parse.Object.extend('UserProfile'),
             Notification: Parse.Object.extend('Notification'),
             Rating: Parse.Object.extend('Rating'),
+            Activity: Parse.Object.extend('Activity'),
         },
         entityKeys: {
             UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo' ],
