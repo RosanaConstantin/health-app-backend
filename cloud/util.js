@@ -21,7 +21,7 @@
             Notification: Parse.Object.extend('Notification')
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight'],
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo' ],
             User: ['email', 'password', 'username']
         },
         ResponseWrapper: {
