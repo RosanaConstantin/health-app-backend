@@ -104,14 +104,14 @@
             return;
         }
 
-        if (!util.validateRequestParams(request, response, ['notificationId', 'wasRead'])) {
+        if (!util.validateRequestParams(request, response, ['notif'])) {
             return;
         }
 
         var user = request.user;
         var sessionToken = user.getSessionToken();
-        var notificationId = request.params.notificationId;
-        var wasRead = request.params.wasRead;
+        var notificationId = request.params.notif.notificationId;
+        var wasRead = request.params.notif.wasRead;
         var notification = new Parse.Query(entity.Notification);
 
         notification
