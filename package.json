@@ -14,7 +14,7 @@
     "express": "~4.11.x",
     "fbgraph": "^1.4.4",
     "kerberos": "~0.0.x",
-    "moment": "^2.22.0",
+    "moment": "^2.22.2",
     "parse": "~1.8.0",
     "parse-server": "*",
     "underscore": "^1.8.3"

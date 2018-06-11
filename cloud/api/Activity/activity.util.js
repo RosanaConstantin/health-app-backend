@@ -21,9 +21,10 @@
             _forEach(array, function (item){
                 var obj = item.toJSON();
                 var newObj = {
-                    createdAt: moment().format('LL'),
-                    message: item.message
+                    createdAt: moment(obj.createdAt).format('LL'),
+                    message: obj.message
                 }
+                processedObj.push(newObj)
             });
             return processedObj;
         }
