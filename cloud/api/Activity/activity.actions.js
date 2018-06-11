@@ -28,7 +28,7 @@
 
         activities
             .limit(20)
-            .ascending("createdAt")
+            .descending("createdAt")
             .find({sessionToken: sessionToken})
             .then(function(activities){
                 response.success(activities)
