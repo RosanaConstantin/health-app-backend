@@ -9,6 +9,7 @@
 (function () {
     var util = require('../../util'),
         userUtil = require('../User/user.util'),
+        activityUtil = require('./activity.util'),
         entity = util.entity;
 
     module.exports = {
@@ -31,7 +32,8 @@
             .descending("createdAt")
             .find({sessionToken: sessionToken})
             .then(function(activities){
-                response.success(activities)
+                var activ = activityUtil.process(activities);
+                response.success(activ)
             })
             .catch(function (reason) {
                 response.error(500, 'Couldn\'t  retrieve activities for user: ' + JSON.stringify(reason));

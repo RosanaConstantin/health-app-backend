@@ -1,6 +1,6 @@
 /**
- * Collection of User utils methods and constants
- * @name Collection of User utils methods and constants
+ * Collection of User utils methods
+ * @name Collection of User utils methods
  * @namespace
  * @author Rosana Constantin constantin.rosana@yahoo.com
  * @version 1.0.0
