@@ -9,6 +9,7 @@
 (function () {
     var _ = require('underscore');
     var util = require('../../util');
+    var moment = require('moment');
 
     module.exports = {
         version: '1.0.0',
@@ -18,11 +19,15 @@
 
         process: function (array) {
             var processedObj = [];
-            _forEach(array, function (item){
+            _.forEach(array, function (item){
                 var obj = item.toJSON();
+                var date = moment(obj.createdAt).format('LLL').split(',');
                 var newObj = {
-                    createdAt: moment(obj.createdAt).format('LL'),
-                    message: obj.message
+                    createdAt: {
+                        day: date[0],
+                        hour: date[1]
+                    },
+                    message: obj.activity
                 }
                 processedObj.push(newObj)
             });

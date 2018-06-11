@@ -17,7 +17,7 @@
     "moment": "^2.22.2",
     "parse": "~1.8.0",
     "parse-server": "*",
-    "underscore": "^1.8.3"
+    "underscore": "^1.9.1"
   },
   "scripts": {
     "postinstall": "cd cloud && apidoc -o api-doc/",
