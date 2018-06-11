@@ -27,16 +27,16 @@
         }
 
         var user = request.user;
-        var message = request.params.rating;
+        var ratingReq = request.params.rating;
 
         var Rating = entity.Rating;
         var rating = new Rating();
         var acl = new Parse.ACL(user);
 
-        if(rating.message){
-            rating.set("ratingMessage", rating.message);
-        } else if(rating.stars){
-            rating.set("ratingStars", rating.stars);
+        if(ratingReq.message){
+            rating.set("ratingMessage", ratingReq.message);
+        } else if(ratingReq.stars){
+            rating.set("ratingStars", ratingReq.stars);
         }
 
         rating.setACL(acl);
