@@ -21,9 +21,10 @@
             Notification: Parse.Object.extend('Notification'),
             Rating: Parse.Object.extend('Rating'),
             Activity: Parse.Object.extend('Activity'),
+            Superviser: Parse.Object.extend('Superviser'),
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo' ],
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo', 'superviser','superviserName' ],
             User: ['email', 'password', 'username']
         },
         ResponseWrapper: {
@@ -63,6 +64,11 @@
         updateNotifications: function (object, objectKeys, changes) {
             if(changes !== undefined && changes!== null)
                 object.set('notifications', changes);
+            return object;
+        },
+        updateSuperviser: function (object, objectKeys, changes) {
+            if(changes !== undefined && changes!== null)
+                object.set('superviser', changes);
             return object;
         }
     };
