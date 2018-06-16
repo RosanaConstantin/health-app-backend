@@ -21,10 +21,9 @@
             Notification: Parse.Object.extend('Notification'),
             Rating: Parse.Object.extend('Rating'),
             Activity: Parse.Object.extend('Activity'),
-            Superviser: Parse.Object.extend('Superviser'),
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo', 'superviser','superviserName' ],
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo', 'superviser','superviserPhone' ],
             User: ['email', 'password', 'username']
         },
         ResponseWrapper: {
