@@ -92,7 +92,7 @@
         notification
             .save()
             .then(function (result) {
-                response.success('Notification saved.');
+                response.success(result);
             })
             .catch(function (reason) {
                 response.error(500, 'Couldn\'t save notification' + JSON.stringify(reason));
