@@ -50,7 +50,7 @@
         userProfile.set('firstName', info['firstName']);
         userProfile.set('lastName', info['lastName']);
         userProfile.set('notifications', true);
-        userPRofile.set('steps', 0);
+        userProfile.set('steps', 0);
 
         return userProfile.save(null, {useMasterKey: true})
             .then(function (userProfile) {
