@@ -23,7 +23,7 @@
             Activity: Parse.Object.extend('Activity'),
         },
         entityKeys: {
-            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo', 'superviser','superviserPhone' ],
+            UserProfile: ['gender', 'birthdate', 'firstName', 'lastName', 'phoneNumber', 'language', 'location', 'notifications', 'stepsGoal', 'weight','photo', 'superviser','superviserPhone', 'steps' ],
             User: ['email', 'password', 'username']
         },
         ResponseWrapper: {

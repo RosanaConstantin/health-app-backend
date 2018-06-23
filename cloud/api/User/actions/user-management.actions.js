@@ -11,13 +11,18 @@
         entityKeys = util.entityKeys,
         entity = util.entity;
 
+    var accountSid = 'AC54eb6a6ba664597f09e6947bfef64d60';
+    var authToken = '7ed5d434f4416cedf3c345bd42b20044';
+    var client = require('twilio')(accountSid, authToken);
+
     module.exports = {
         version: '1.0.0',
         create: _createUser,
         deleteUser: _deleteUser,
         loginUser: _loginUser,
         getUserDetails: _getUserDetails,
-        updateCredentials: _updateCredentials
+        updateCredentials: _updateCredentials,
+        userAlert: _userAlert
     };
 
     function _createUser(request, response) {
@@ -47,6 +52,7 @@
         userProfile.set('firstName', info['firstName']);
         userProfile.set('lastName', info['lastName']);
         userProfile.set('notifications', true);
+        userPRofile.set('steps', 0);
 
         return userProfile.save(null, {useMasterKey: true})
             .then(function (userProfile) {
@@ -155,5 +161,20 @@
             .catch(function (reason) {
                 response.error(500, 'Couldn\'t delete user' + JSON.stringify(reason));
             });
+    }
+
+    function _userAlert( request, response){
+        var superviser = request.params.phone;
+        client.messages
+            .create({
+                body: 'This is an alarm message! Your patient is falling down!',
+                from: '+40733823437',
+                to: '+40724709681'
+            })
+            .then(function(response){
+                response.success('Mesaj trimis!')
+            }).catch(function (error) {
+                response.error("S-a produs o eroare!")
+        })
     }
 }());
