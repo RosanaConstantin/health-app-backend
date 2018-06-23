@@ -11,9 +11,7 @@
         entityKeys = util.entityKeys,
         entity = util.entity;
 
-    var accountSid = 'AC54eb6a6ba664597f09e6947bfef64d60';
-    var authToken = '7ed5d434f4416cedf3c345bd42b20044';
-    var client = require('twilio')(accountSid, authToken);
+    var SMSAPI = require('smsapicom');
 
     module.exports = {
         version: '1.0.0',
@@ -164,17 +162,36 @@
     }
 
     function _userAlert( request, response){
+        if (!util.validateRequestParams(request, response, ['phone'])) {
+            return;
+        }
         var superviser = request.params.phone;
-        client.messages
-            .create({
-                body: 'This is an alarm message! Your patient is falling down!',
-                from: '+40733823437',
-                to: '+40724709681'
-            })
-            .then(function(response){
-                response.success('Mesaj trimis!')
-            }).catch(function (error) {
-                response.error("S-a produs o eroare!")
-        })
+
+
+        var smsapi = new SMSAPI();
+        smsapi.authentication
+            .login('rosanaconstantin@gmail.com', '123456789')
+            .then(sendMessage)
+            .then(displayResult)
+            .catch(displayError);
+
+        function sendMessage(){
+            return smsapi.message
+                .sms()
+                .from('Info')
+                .to('+4' + superviser)
+                .message('Pacientul tau este in pericol! Localizeaza-l si asigura-te ca e bine!')
+                .execute(); // return Promise
+        }
+
+        function displayResult(result){
+            //console.log(result);
+            response.success("Reusit");
+        }
+
+        function displayError(err){
+           // console.error(err);
+            response.error("Esuat");
+        }
     }
 }());
