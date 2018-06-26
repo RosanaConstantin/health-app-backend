@@ -29,7 +29,7 @@
 
         activities
             .limit(20)
-            .ascending("createdAt")
+            .descending("createdAt")
             .find({sessionToken: sessionToken})
             .then(function(activities){
                 var activ = activityUtil.process(activities);
