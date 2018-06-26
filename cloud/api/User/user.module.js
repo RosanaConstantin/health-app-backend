@@ -21,7 +21,6 @@
             Parse.Cloud.define(prefix + 'update-profile', userProfile.update);
             Parse.Cloud.define(prefix + 'update-notifications', userProfile.updateNotifications);
             Parse.Cloud.define(prefix + 'update-superviser', userProfile.updateSuperviser);
-            Parse.Cloud.define(prefix + 'update-steps', userProfile.updateSteps);
             Parse.Cloud.define(prefix + 'login', userManagement.loginUser);
             Parse.Cloud.define(prefix + 'alert', userManagement.userAlert);
             Parse.Cloud.define(prefix + 'update-credentials', userManagement.updateCredentials);

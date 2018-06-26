@@ -44,10 +44,10 @@
         rating
             .save()
             .then(function (result) {
-                response.success('Rating saved.');
+                response.success('S-a salvat evaluarea!');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t save rating' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut salva evaluarea' + JSON.stringify(reason));
             });
     }
 

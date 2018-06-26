@@ -37,16 +37,16 @@
             .get(notificationId, {sessionToken: sessionToken})
             .then(function (notif) {
                 if(!notif) {
-                    response.error(400, "No notification found for specified id");
+                    response.error(400, "Nu s-a gasit notificarea respectiva!");
                 }
 
                 return notif.destroy({useMasterKey: true});
             })
             .then(function(result){
-                response.success("Notification deleted!")
+                response.success("Notificare stearsa!")
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t  delete notification for user: ' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut sterge notificarea pentru utilizator: ' + JSON.stringify(reason));
             });
     }
 
@@ -66,7 +66,7 @@
                 response.success(result);
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t  retrieve notifications for your user: ' + JSON.stringify(reason));
+                response.error(500, 'Nu se pot extrage notificarile pentru utilizator: ' + JSON.stringify(reason));
             });
     }
 
@@ -95,7 +95,7 @@
                 response.success(result);
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t save notification' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut salva notificarea' + JSON.stringify(reason));
             });
     }
 
@@ -118,17 +118,17 @@
             .get(notificationId, {sessionToken: sessionToken})
             .then(function (notif) {
                 if(!notif) {
-                    response.error(400, "No notification found for specified id");
+                    response.error(400, "Nu s-a gasit notificarea respectiva!");
                 }
 
                 notif.set("wasRead", wasRead)
                 return notif.save(null, {sessionToken: sessionToken});
             })
             .then(function(result){
-                response.success("Notification update with success!")
+                response.success("Notificarea actualizata cu succes!")
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t  update notification for user: ' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut actualiza notificarea: ' + JSON.stringify(reason));
             });
     }
 }());

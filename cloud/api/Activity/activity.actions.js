@@ -36,7 +36,7 @@
                 response.success(activ)
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t  retrieve activities for user: ' + JSON.stringify(reason));
+                response.error(500, 'nu s-au putut extrage activitatile pentru utilizator: ' + JSON.stringify(reason));
             });
     }
 
@@ -65,7 +65,7 @@
                 response.success('Activity saved.');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t save activity' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut salva activitatea' + JSON.stringify(reason));
             });
     }
 }());

@@ -129,17 +129,17 @@
         query.get(user.id, {sessionToken: sessionToken})
             .then(function (user) {
                 if (!user) {
-                    console.error('User is null or undefined');
+                    console.error('Utilizatorul este null sau nedefinit!');
                 }
 
                 return util.updateObject(user, entityKeys.User, credentialsChanges)
                     .save(null, {sessionToken: sessionToken});
             })
             .then(function (result) {
-                response.success('User updated.');
+                response.success('S-a actualizat utilizatorul!');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t update user' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut actualiza utlizatorul!' + JSON.stringify(reason));
             });
     }
 
@@ -154,10 +154,10 @@
                 return user.destroy({useMasterKey: true});
             })
             .then(function (result) {
-                response.success('User deleted.');
+                response.success('S-a sters utilizatorul!');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t delete user' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut sterge utilizatorul' + JSON.stringify(reason));
             });
     }
 

@@ -16,8 +16,7 @@
         version: '1.0.0',
         update: _updateProfile,
         updateNotifications: _updateNotifications,
-        updateSuperviser: _updateSuperviser,
-        updateSteps: _updateSteps
+        updateSuperviser: _updateSuperviser
     };
 
     /**
@@ -59,17 +58,17 @@
         query.get(userProfile.id, {sessionToken: sessionToken})
             .then(function (profile) {
                 if (!profile) {
-                    console.error('User profile is null or undefined');
+                    console.error('Utilizator inexistent');
                 }
 
                 return util.updateObject(profile, entityKeys.UserProfile, profileChanges)
                     .save(null, {sessionToken: sessionToken});
             })
             .then(function (result) {
-                response.success('Profile updated.');
+                response.success('Profil actualizat!');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t update profile' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut actualiza profilul:' + JSON.stringify(reason));
             });
     }
 
@@ -94,17 +93,17 @@
         query.get(userProfile.id, {sessionToken: sessionToken})
             .then(function (profile) {
                 if (!profile) {
-                    console.error('User profile is null or undefined');
+                    console.error('Utilizator inexistent');
                 }
 
                 return util.updateNotifications(profile, entityKeys.UserProfile, profileChanges)
                     .save(null, {sessionToken: sessionToken});
             })
             .then(function (result) {
-                response.success('Profile updated.');
+                response.success('Profil actualizat');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t update profile' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut actuliza profilul' + JSON.stringify(reason));
             });
     }
 
@@ -128,51 +127,17 @@
         query.get(userProfile.id, {sessionToken: sessionToken})
             .then(function (profile) {
                 if (!profile) {
-                    console.error('User profile is null or undefined');
+                    console.error('Utilizator inexistent');
                 }
 
                 return util.updateSuperviser(profile, entityKeys.UserProfile, profileChanges)
                     .save(null, {sessionToken: sessionToken});
             })
             .then(function (result) {
-                response.success('Profile updated.');
+                response.success('Profil actualizat');
             })
             .catch(function (reason) {
-                response.error(500, 'Couldn\'t update profile' + JSON.stringify(reason));
-            });
-    }
-
-
-    function _updateSteps (request, response){
-        if (!userUtil.validateUserRequest(request, response)) {
-            return;
-        }
-
-        if (!util.validateRequestParams(request, response, ['steps'])) {
-            return;
-        }
-        var user = request.user;
-        var sessionToken = user.getSessionToken();
-
-        var userProfile = user.get('profile');
-        var profileChanges = request.params['steps'];
-
-        var query = new Parse.Query(entity.UserProfile);
-
-        query.get(userProfile.id, {sessionToken: sessionToken})
-            .then(function (profile) {
-                if (!profile) {
-                    console.error('User profile is null or undefined');
-                }
-
-                return util.updateSuperviser(profile, entityKeys.UserProfile, profileChanges)
-                    .save(null, {sessionToken: sessionToken});
-            })
-            .then(function (result) {
-                response.success('Profile updated.');
-            })
-            .catch(function (reason) {
-                response.error(500, 'Couldn\'t update profile' + JSON.stringify(reason));
+                response.error(500, 'Nu s-a putut actuliza profilul' + JSON.stringify(reason));
             });
     }
 
