@@ -8,6 +8,7 @@
 
 (function () {
     var util = require('../../util'),
+        notifUtil = require('./notification.util'),
         userUtil = require('../User/user.util'),
         entity = util.entity;
 
@@ -61,9 +62,11 @@
         var query = new Parse.Query(entity.Notification);
 
         query
+            .descending("createdAt")
             .find({sessionToken: sessionToken})
             .then(function (result) {
-                response.success(result);
+                var notif = notifUtil.process(result);
+                response.success(notif)
             })
             .catch(function (reason) {
                 response.error(500, 'Nu se pot extrage notificarile pentru utilizator: ' + JSON.stringify(reason));
