@@ -27,7 +27,7 @@
                         day: date[0],
                         hour: date[1]
                     },
-                    message: obj.activity
+                    message: obj.message
                 }
                 processedObj.push(newObj)
             });
