@@ -25,7 +25,7 @@
                 var newObj = {
                     createdAt: {
                         day: date[0],
-                        hour: date[1]
+                        hour: date[1].replace("2018 ", "")
                     },
                     message: obj.message
                 }
