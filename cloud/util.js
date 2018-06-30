@@ -50,7 +50,7 @@
         },
         updateObject: function (object, objectKeys, changes) {
             _.forEach(objectKeys, function (key) {
-                if(key.localeCompare("weight") === 0 || key.localeCompare("stepsGoal") === 0 || key.localeCompare("stepsGoal") === 0) {
+                if(key.localeCompare("weight") === 0 || key.localeCompare("stepsGoal") === 0 || key.localeCompare("steps") === 0) {
                     changes[key] = parseInt(changes[key]);
                 }
 
