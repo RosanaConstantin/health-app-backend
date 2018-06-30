@@ -53,6 +53,11 @@
                 if(key.localeCompare("weight") === 0 || key.localeCompare("stepsGoal") === 0 || key.localeCompare("steps") === 0) {
                     changes[key] = parseInt(changes[key]);
                 }
+                if(key.localeCompare("stepsGoal") === 0 || key.localeCompare("steps") === 0){
+                    if(changes[key] < 1){
+                        changes[key] = 0;
+                    }
+                }
 
                 if (!!changes[key]) {
                     object.set(key, changes[key]);
