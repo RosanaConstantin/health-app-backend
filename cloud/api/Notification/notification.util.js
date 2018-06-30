@@ -27,7 +27,8 @@
                         day: date[0],
                         hour: date[1].replace("2018 ", "")
                     },
-                    message: obj.message
+                    message: obj.message,
+                    objectId: obj.objectId
                 }
                 processedObj.push(newObj)
             });
